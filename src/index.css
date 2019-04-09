@@ -43,6 +43,26 @@ code {
   border-radius: 2px;
 }
 
+.dashboard {
+  margin: 150px auto;
+  border: 1px solid gray;
+  width: 70%;
+  height: 600px;
+  border-radius: 2px;
+}
+
+.poll-nav {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.poll-nav li {
+  margin: auto;
+  padding: 10px;
+}
+
 @media screen and (max-width: 1000px) {
   .sign-in {
     margin: 200px auto;
@@ -53,5 +73,8 @@ code {
     -webkit-box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
     -moz-box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
     box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
+  }
+  .dashboard {
+    width: 90%;
   }
 }
