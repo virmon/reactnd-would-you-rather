@@ -3,7 +3,7 @@ import { receivePolls } from './polls'
 import { receiveUsers } from './users'
 import { setAuthedUser } from './authedUser';
 
-const AUTHED_USER = 'user'
+const AUTHED_ID = 'sarahedo'
 
 export function handleInitialData () {
     return (dispatch) => {
@@ -11,7 +11,7 @@ export function handleInitialData () {
             .then(({polls, users}) => {
                 dispatch(receivePolls(polls))
                 dispatch(receiveUsers(users))
-                dispatch(setAuthedUser(AUTHED_USER))
+                dispatch(setAuthedUser(AUTHED_ID))
             })
     }
 }
