@@ -1,6 +1,6 @@
 import { savePoll } from '../utils/api'
 
-export const RECEIVE_POLL = 'RECEIVE_POLLS'
+export const RECEIVE_POLLS = 'RECEIVE_POLLS'
 export const ADD_POLL = 'ADD_POLL'
 export const ANSWER_POLL = 'ANSWER_POLL'
 

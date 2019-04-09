@@ -8,7 +8,7 @@ import {
 export function getInitialData () {
     return Promise.all([
         _getUsers(),
-        _getTweets(),
+        _getQuestions(),
     ]).then(([users, polls]) => ({
         users,
         polls,
