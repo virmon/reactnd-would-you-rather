@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 class Dashboard extends Component {
     render() {
-        const { answeredPollIds } = this.props
+        const { answeredPollIds, unansweredPollIds } = this.props
         // console.log(this.props)
         return (
             <div className='dashboard' role='navigation'>
@@ -14,8 +14,13 @@ class Dashboard extends Component {
                     <li><span>Answered Questions</span></li>
                 </ul>
                 {
+                    unansweredPollIds && unansweredPollIds.map((id) => (
+                        <PollItem key={id} id={id} view='open' />
+                    ))
+                }
+                {
                     answeredPollIds && answeredPollIds.map((id) => (
-                        <PollItem key={id} id={id} />
+                        <PollItem key={id} id={id} view='open' />
                     ))
                 }
             </div>
@@ -24,10 +29,13 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps ({ authedUser, users, polls }) {
-    // const pollId = Object.keys(polls)
+    const pollId = Object.keys(polls)
     const answeredPollIds = users[authedUser] ? Object.keys(users[authedUser].answers) : null
+    const unansweredPollIds = pollId.filter((id) => !answeredPollIds.includes(id))
+
     return {
-        answeredPollIds
+        answeredPollIds,
+        unansweredPollIds
     }
 }
 

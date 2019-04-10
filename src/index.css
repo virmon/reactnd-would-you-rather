@@ -91,6 +91,19 @@ code {
   margin: 20px;
 }
 
+.option-result {
+  border: 2px solid #42A5F5;
+  border-radius: 15px;
+  height: 100px;
+  margin: 10px;
+  padding: 5px;
+  font-size: 12px;
+}
+
+.vote {
+  background-color: rgb(202, 224, 241)
+}
+
 @media screen and (max-width: 1000px) {
   .sign-in {
     margin: 200px auto;

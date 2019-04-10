@@ -8,7 +8,7 @@ class Poll extends Component {
         // console.log('props', this.props)
         return (
             <div>
-                <PollItem id={id} open={true} />
+                <PollItem id={id} view={'unanswered'} />
             </div>
         )
     }
