@@ -66,7 +66,7 @@ code {
 .poll {
   margin: 20px auto;
   width: 50%;
-  height: 220px;
+  height: auto;
   border-radius: 10px;
   background-color: whitesmoke;
   -webkit-box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
