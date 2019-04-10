@@ -47,7 +47,7 @@ code {
   margin: 150px auto;
   border: 1px solid gray;
   width: 70%;
-  height: 600px;
+  max-height: 100%;
   border-radius: 2px;
 }
 
@@ -63,6 +63,34 @@ code {
   padding: 10px;
 }
 
+.poll {
+  margin: 20px auto;
+  width: 50%;
+  height: 220px;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
+  box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
+}
+
+.poll-content {
+  display: flex;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  margin: auto;
+}
+
+.poll-text {
+  width: 50%;
+  height: 50%;
+  margin: 20px;
+}
+
 @media screen and (max-width: 1000px) {
   .sign-in {
     margin: 200px auto;
@@ -75,6 +103,9 @@ code {
     box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
   }
   .dashboard {
+    width: 90%;
+  }
+  .poll {
     width: 90%;
   }
 }
