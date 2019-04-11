@@ -6,6 +6,7 @@ import Dashboard from './Dashboard'
 import Poll from './Poll'
 import PollResult from './PollResult'
 import NewPoll from './NewPoll'
+import Leaderboard from './Leaderboard'
 
 class App extends Component {
   componentDidMount () {
@@ -19,6 +20,7 @@ class App extends Component {
         <Poll />
         <PollResult />
         <NewPoll />
+        <Leaderboard />
       </div>
     );
   }
