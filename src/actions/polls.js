@@ -23,7 +23,8 @@ export function handleAddPoll (poll) {
         const { authedUser } = getState()
 
         savePoll({
-            poll,
+            optionOneText: poll.optionOne,
+            optionTwoText: poll.optionTwo,
             author: authedUser
         })
             .then((poll) => dispatch(addPoll(poll)))

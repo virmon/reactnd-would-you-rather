@@ -104,6 +104,21 @@ code {
   background-color: rgb(202, 224, 241)
 }
 
+.form {
+  margin: 10px auto;
+  width: 80%;
+  padding: 10px;
+}
+
+.form input[type=text]{
+  margin: 10px auto;
+  width: 50%;
+  height: 12%;
+  padding: 10px;
+  border: 1px solid #42A5F5;
+  /* border-radius: 2px; */
+}
+
 @media screen and (max-width: 1000px) {
   .sign-in {
     margin: 200px auto;
