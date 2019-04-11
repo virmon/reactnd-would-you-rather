@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { handleInitialData } from '../actions/shared'
 import { connect } from 'react-redux'
+import Nav from './Nav'
 import SignIn from './SignIn'
 import Dashboard from './Dashboard'
 import Poll from './Poll'
@@ -14,16 +16,25 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
-        <SignIn />
-        <Dashboard />
-        <Poll />
-        <PollResult />
-        <NewPoll />
-        <Leaderboard />
-      </div>
+      <Router>
+        <Nav authedUser={this.props.authedUser} />
+        <Switch>
+          <Route path='/signin' component={SignIn}/>
+          <Route exact path='/' component={Dashboard}/>
+          <Route path='/poll/:id' component={Poll}/>
+          <Route path='/poll/result/:id' component={PollResult}/>
+          <Route path='/create' component={NewPoll}/>
+          <Route path='/leaderboard' component={Leaderboard}/>
+        </Switch>
+      </Router>
     );
   }
 }
 
-export default connect()(App);
+function mapStateToProps ({ authedUser }) {
+  return {
+    authedUser
+  }
+}
+
+export default connect(mapStateToProps)(App);
