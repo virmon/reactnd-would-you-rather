@@ -35,7 +35,7 @@ class PollItem extends Component {
     }
     render () {
         const { name, avatarURL, text, view, optionOne, optionTwo, voteOne, voteTwo, vote } = this.props
-        console.log('props', this.props)
+        // console.log('props', this.props)
         return (
             <div className='poll'>
                 <h5 style={{margin:'10px', padding:'10px'}}>{name} asks:</h5>

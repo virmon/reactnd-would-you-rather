@@ -5,7 +5,7 @@ import PollItem from './PollItem'
 class PollResult extends Component {
     render () {
         const { id, optionOne, optionTwo, answers, voteOne, voteTwo } = this.props
-        console.log(voteOne)
+        // console.log(voteOne)
 
         return (
             <PollItem id={id} view={'result'} />
