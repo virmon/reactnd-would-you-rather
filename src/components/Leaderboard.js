@@ -30,6 +30,9 @@ class Leaderboard extends Component {
 
 function mapStateToProps ({ authedUser, users }) {
     const userIds = Object.keys(users)
+                        .sort((a, b) => 
+                            (Object.keys(users[b].answers).length+users[b].questions.length) - (Object.keys(users[a].answers).length+users[a].questions.length))
+
     return {
         authedUser,
         users,
