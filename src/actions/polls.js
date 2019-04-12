@@ -31,11 +31,9 @@ export function handleAddPoll (poll) {
     }
 }
 
-export function answerPoll ({ id, authedUser, answer }) {
+export function answerPoll (poll) {
     return {
         type: ANSWER_POLL,
-        id,
-        authedUser,
-        answer
+        poll
     }
 }

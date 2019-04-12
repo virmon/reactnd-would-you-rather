@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 
 class Poll extends Component {
     render () {
-        const { id } = this.props
-        // console.log('props', this.props)
+        const id = this.props.match.params.id
+        console.log('props', this.props)
         return (
             <div>
                 <PollItem id={id} view={'unanswered'} />
@@ -15,10 +15,7 @@ class Poll extends Component {
 }
 
 function mapStateToProps ({ authedUser }) {
-    const id = this.props.match.params
-
     return {
-        id,
         authedUser
     }
 }

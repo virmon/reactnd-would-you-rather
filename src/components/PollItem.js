@@ -1,15 +1,57 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { handleAnswerPoll } from '../actions/shared' 
 
 class PollItem extends Component {
-    handlePollView (view, text, optionOne, optionTwo, voteOne, voteTwo, vote) {
+    state = {
+        selectedOption: ''
+    }
+    handleChange = (e) => {
+        this.setState({
+            selectedOption: e.target.value
+        })
+    }
+    handleSubmitAnswer = (e) => {
+        e.preventDefault()
+
+        const qid = this.props.id 
+        const answer = this.state.selectedOption
+
+        console.log('You have selected:', qid, answer);
+        this.props.dispatch(handleAnswerPoll(qid, answer))
+        
+
+        this.setState({
+            selectedOption: ''
+        })
+    }
+    handlePollView (id, view, text, optionOne, optionTwo, voteOne, voteTwo, vote) {
         switch (view) {
             case 'unanswered' :
                 return  <div className='poll-text'>
                             <b>Would you rather...</b>
-                            <p><input type='radio' name='poll' value={optionOne}/> {optionOne}</p>
-                            <p><input type='radio' name='poll' value={optionTwo}/> {optionTwo}</p>
-                            <button className='btn'>Submit</button>
+                            <form onSubmit={this.handleSubmitAnswer}>
+                                <p>
+                                    <input 
+                                        type='radio' 
+                                        value={'optionOne'} 
+                                        onChange={this.handleChange} 
+                                        checked={this.state.selectedOption === 'optionOne'}
+                                    /> 
+                                    {optionOne}
+                                </p>
+                                <p>
+                                    <input 
+                                        type='radio' 
+                                        value={'optionTwo'} 
+                                        onChange={this.handleChange} 
+                                        checked={this.state.selectedOption === 'optionTwo'}
+                                    /> 
+                                    {optionTwo}
+                                </p>
+                                <button type='submit' className='btn'>Submit</button>
+                            </form>
                         </div>
             case 'result' :
                 return  <div className='poll-text'>
@@ -29,20 +71,20 @@ class PollItem extends Component {
                 return  <div className='poll-text'>
                             <b>Would you rather...</b>
                             <p>{text}</p>
-                            <button className='btn'>View Poll</button>
+                            <Link to={'/poll/'+id}><button className='btn'>View Poll</button></Link>
                         </div>
         }
     }
     render () {
-        const { name, avatarURL, text, view, optionOne, optionTwo, voteOne, voteTwo, vote } = this.props
-        // console.log('props', this.props)
+        const { id, name, avatarURL, text, view, optionOne, optionTwo, voteOne, voteTwo, vote } = this.props
+        console.log('props', this.props)
         return (
             <div className='poll'>
                 <h5 style={{margin:'10px', padding:'10px'}}>{name} asks:</h5>
                 <div className='poll-content'>
                     <img src={avatarURL} alt={name} className='avatar'/>
                         {
-                            this.handlePollView(view, text, optionOne, optionTwo, voteOne, voteTwo, vote) 
+                            this.handlePollView(id, view, text, optionOne, optionTwo, voteOne, voteTwo, vote) 
                         }
                 </div>
             </div>
@@ -64,7 +106,7 @@ function mapStateToProps ({ authedUser, users, polls }, {id, view}) {
         optionTwo: poll ? polls[id].optionTwo.text : '',
         voteOne: poll ? polls[id].optionOne.votes.length : 0,
         voteTwo: poll ? polls[id].optionTwo.votes.length : 0,
-        vote: users[authedUser] ? users[authedUser].answers[id] : null
+        vote: users[authedUser] ? users[authedUser].answers[id] : ''
     }
 }
 
