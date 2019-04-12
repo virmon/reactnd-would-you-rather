@@ -1,40 +1,33 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-import PollItem from './PollItem'
+import { Link, Redirect, Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-// import  { getUserIds } from '../utils/helper' 
+import Unanswered from './Unanswered'
 
 class Dashboard extends Component {
     render() {
         const { authedUser, answeredPollIds, unansweredPollIds } = this.props
-        console.log(this.props)
+        // console.log(this.props)
         if (authedUser === null) {
             return <Redirect to='/' />
         }
         return (
             <div className='dashboard' role='navigation'>
                 <ul className='poll-nav'>
-                    <li><span>Unanswered Questions</span></li>
-                    <li><span>Answered Questions</span></li>
+                    <li className='nav-item'><Link to='/home/unanswered'>Unanswered Questions</Link></li>
+                    <li className='nav-item'><Link to='/home/answered'>Answered Questions</Link></li>
                 </ul>
-                {
-                    unansweredPollIds && unansweredPollIds.map((id) => (
-                        <PollItem key={id} id={id} view='open' />
-                    ))
-                }
-                {
-                    answeredPollIds && answeredPollIds.map((id) => (
-                        <PollItem key={id} id={id} view='open' />
-                    ))
-                }
+                <Switch>
+                    <Route path='/home/unanswered' render={() => <Unanswered data={unansweredPollIds}/>} />
+                    <Route path='/home/answered' render={() => <Unanswered data={answeredPollIds} />} />
+                </Switch>
             </div>
         )
     }
 }
 
 function mapStateToProps ({ authedUser, users, polls }) {
-    const pollId = Object.keys(polls)
-    const answeredPollIds = users[authedUser] ? Object.keys(users[authedUser].answers) : null
+    const pollId = Object.keys(polls).sort((a,b) => polls[b].timestamp - polls[a].timestamp)
+    const answeredPollIds = users[authedUser] ? Object.keys(users[authedUser].answers).sort((a,b) => polls[b].timestamp - polls[a].timestamp) : null
     const unansweredPollIds = authedUser ? pollId.filter((id) => !answeredPollIds.includes(id)) : null
 
     return {

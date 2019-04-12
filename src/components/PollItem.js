@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleAnswerPoll } from '../actions/shared' 
 
 class PollItem extends Component {
     state = {
-        selectedOption: ''
+        selectedOption: '',
+        toHome: false
     }
     handleChange = (e) => {
         this.setState({
@@ -23,7 +24,8 @@ class PollItem extends Component {
         
 
         this.setState({
-            selectedOption: ''
+            selectedOption: '',
+            toHome: true
         })
     }
     handlePollView (id, view, text, optionOne, optionTwo, voteOne, voteTwo, vote) {
@@ -77,7 +79,11 @@ class PollItem extends Component {
     }
     render () {
         const { id, name, avatarURL, text, view, optionOne, optionTwo, voteOne, voteTwo, vote } = this.props
-        console.log('props', this.props)
+        const { toHome } = this.state
+        // console.log('props', this.props)
+        if (toHome === true) {
+            return <Redirect to='/home/unanswered' />
+        }
         return (
             <div className='poll'>
                 <h5 style={{margin:'10px', padding:'10px'}}>{name} asks:</h5>

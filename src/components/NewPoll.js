@@ -34,7 +34,7 @@ class NewPoll extends Component {
             return <Redirect to='/' />
         } 
         if (this.state.toHome === true) {
-            return <Redirect to='/home' />
+            return <Redirect to='/home/unanswered' />
         }
         return (
             <div className='poll'>

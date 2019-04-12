@@ -21,7 +21,7 @@ class SignIn extends Component {
     }
     render () {
         if (this.state.toHome === true) {
-            return <Redirect to='/home' />
+            return <Redirect to='/home/unanswered' />
         }
         return (
             <div className='sign-in'>

@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 
 export default function Nav (props) {
-    console.log(props)
     function logout () {
         props.handleLogout()
     }
@@ -10,7 +9,7 @@ export default function Nav (props) {
         <nav className='nav'>
             <ul>
                 <li className='nav-item'>
-                    <NavLink to='/home' exact activeClassName='active'>
+                    <NavLink to='/home/unanswered' exact activeClassName='active'>
                         Home
                     </NavLink>
                 </li>
