@@ -73,7 +73,7 @@ class PollItem extends Component {
                 return  <div className='poll-text'>
                             <b>Would you rather...</b>
                             <p>{text}</p>
-                            <Link to={'/poll/'+id}><button className='btn'>View Poll</button></Link>
+                            <Link to={vote === undefined ? '/poll/'+id : '/result/'+id}><button className='btn'>View Poll</button></Link>
                         </div>
         }
     }
