@@ -15,7 +15,7 @@ class Poll extends Component {
 }
 
 function mapStateToProps ({ authedUser }) {
-    const id = '6ni6ok3ym7mf1p33lnez'
+    const id = this.props.match.params
 
     return {
         id,

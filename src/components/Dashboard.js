@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import PollItem from './PollItem'
 import { connect } from 'react-redux'
 // import  { getUserIds } from '../utils/helper' 
 
 class Dashboard extends Component {
     render() {
-        const { answeredPollIds, unansweredPollIds } = this.props
-        // console.log(this.props)
+        const { authedUser, answeredPollIds, unansweredPollIds } = this.props
+        console.log(this.props)
+        if (authedUser === null) {
+            return <Redirect to='/' />
+        }
         return (
             <div className='dashboard' role='navigation'>
                 <ul className='poll-nav'>
@@ -31,9 +35,10 @@ class Dashboard extends Component {
 function mapStateToProps ({ authedUser, users, polls }) {
     const pollId = Object.keys(polls)
     const answeredPollIds = users[authedUser] ? Object.keys(users[authedUser].answers) : null
-    const unansweredPollIds = pollId.filter((id) => !answeredPollIds.includes(id))
+    const unansweredPollIds = authedUser ? pollId.filter((id) => !answeredPollIds.includes(id)) : null
 
     return {
+        authedUser,
         answeredPollIds,
         unansweredPollIds
     }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { handleInitialData } from '../actions/shared'
+import { setAuthedUser } from '../actions/authedUser';
 import { connect } from 'react-redux'
 import Nav from './Nav'
 import SignIn from './SignIn'
@@ -14,13 +15,17 @@ class App extends Component {
   componentDidMount () {
     this.props.dispatch(handleInitialData())
   }
+  handleLogout = () => {
+    this.props.dispatch(setAuthedUser(null));
+  }
   render() {
+    const { authedUser, user } = this.props
     return (
       <Router>
-        <Nav authedUser={this.props.authedUser} />
+        <Nav authedUser={authedUser ? authedUser : null} user={user} handleLogout={this.handleLogout}/>
         <Switch>
-          <Route path='/signin' component={SignIn}/>
-          <Route exact path='/' component={Dashboard}/>
+          <Route exact path='/' component={SignIn}/>
+          <Route path='/home' component={Dashboard}/>
           <Route path='/poll/:id' component={Poll}/>
           <Route path='/poll/result/:id' component={PollResult}/>
           <Route path='/create' component={NewPoll}/>
@@ -31,9 +36,10 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ authedUser, users }) {
   return {
-    authedUser
+    authedUser,
+    user: users[authedUser]
   }
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import { handleAddPoll } from '../actions/polls'
 import { connect } from 'react-redux'
 
@@ -29,6 +30,12 @@ class NewPoll extends Component {
 
     }
     render () {
+        if (this.props.authedUser === null) {
+            return <Redirect to='/' />
+        } 
+        if (this.state.toHome === true) {
+            return <Redirect to='/home' />
+        }
         return (
             <div className='poll'>
                 <div className='form'>
@@ -47,4 +54,10 @@ class NewPoll extends Component {
     }
 }
 
-export default connect()(NewPoll)
+function mapStateToProps ({ authedUser }) {
+    return {
+        authedUser
+    }
+}
+
+export default connect(mapStateToProps)(NewPoll)

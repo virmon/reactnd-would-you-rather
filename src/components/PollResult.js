@@ -4,8 +4,7 @@ import PollItem from './PollItem'
 
 class PollResult extends Component {
     render () {
-        const { id, optionOne, optionTwo, answers, voteOne, voteTwo } = this.props
-        // console.log(voteOne)
+        const { id } = this.props
 
         return (
             <PollItem id={id} view={'result'} />
@@ -14,7 +13,7 @@ class PollResult extends Component {
 }
 
 function mapStateToProps ({ authedUser, users, polls }, { optionOne, optionTwo, answers }) {
-    const id = '8xf0y6ziyjabvozdd253nd' // this.props.match.params
+    const id = this.props.match.params
     const pollIds = Object.keys(polls)
 
 

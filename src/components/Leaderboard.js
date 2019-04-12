@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import User from './User'
 import { connect } from 'react-redux'
 
 class Leaderboard extends Component {
     render () {
-        const { users, userIds } = this.props
+        const { authedUser, users, userIds } = this.props
         // console.log(this.props)
+        if (authedUser === null) {
+            return <Redirect to='/' />
+        }
         return (
             <div className=''>
                {
@@ -24,9 +28,10 @@ class Leaderboard extends Component {
     }
 }
 
-function mapStateToProps ({ users }) {
+function mapStateToProps ({ authedUser, users }) {
     const userIds = Object.keys(users)
     return {
+        authedUser,
         users,
         userIds
     }
