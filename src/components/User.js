@@ -4,6 +4,7 @@ const User = (props) => {
     const { name, avatarURL, answerCount, questionCount } = props
     return (
         <div className='poll'>
+            {/* <div className='leaderboard-medal' style={{backgroundColor: medal}}></div> */}
             <div className='poll-content'>
                 <img src={avatarURL} alt={name} className='avatar'/>
                 <div className='poll-text'>

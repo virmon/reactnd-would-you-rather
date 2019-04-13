@@ -9,17 +9,17 @@ export default function Nav (props) {
         <nav className='nav'>
             <ul>
                 <li className='nav-item'>
-                    <NavLink to='/home/unanswered' exact activeClassName='active'>
+                    <NavLink to='/home/unanswered' activeStyle={{color:'#42A5F5'}}>
                         Home
                     </NavLink>
                 </li>
                 <li className='nav-item'>
-                    <NavLink to='/create' activeClassName='active'>
+                    <NavLink to='/create' activeStyle={{color:'#42A5F5'}}>
                         New Question
                     </NavLink>
                 </li>
                 <li className='nav-item account'>
-                    <NavLink to='/leaderboard' activeClassName='active'>
+                    <NavLink to='/leaderboard' activeStyle={{color:'#42A5F5'}}>
                         Leaderboard
                     </NavLink>
                 </li>

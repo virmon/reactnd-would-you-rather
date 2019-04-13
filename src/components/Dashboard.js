@@ -1,9 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Link, Redirect, Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Unanswered from './Unanswered'
 
 class Dashboard extends Component {
+    state = {
+        selected: 'unanswered'
+    }
+    handleClick = () => {
+        if (this.state.selected === 'unanswered') {
+            this.setState({
+                selected: 'answered'
+            })
+        } else {
+            this.setState({
+                selected: 'unanswered'
+            })
+        }
+        
+    }
     render() {
         const { authedUser, answeredPollIds, unansweredPollIds } = this.props
         // console.log(this.props)
@@ -11,16 +26,18 @@ class Dashboard extends Component {
             return <Redirect to='/' />
         }
         return (
-            <div className='dashboard' role='navigation'>
-                <ul className='poll-nav'>
-                    <li className='nav-item'><Link to='/home/unanswered'>Unanswered Questions</Link></li>
-                    <li className='nav-item'><Link to='/home/answered'>Answered Questions</Link></li>
-                </ul>
+            <Fragment>
+                <div className='dashboard' role='navigation'>
+                    <ul className='poll-nav'>
+                        <li className='nav-item'><Link to='/home/unanswered' onClick={this.handleClick} style={this.state.selected === 'unanswered' ? {color:'#42A5F5'} : {color:'black'}}>Unanswered Questions</Link></li>
+                        <li className='nav-item'><Link to='/home/answered' onClick={this.handleClick} style={this.state.selected === 'answered' ? {color:'#42A5F5'} : {color:'black'}}>Answered Questions</Link></li>
+                    </ul>
+                </div>
                 <Switch>
-                    <Route path='/home/unanswered' render={() => <Unanswered data={unansweredPollIds}/>} />
-                    <Route path='/home/answered' render={() => <Unanswered data={answeredPollIds} />} />
+                    <Route path='/home/unanswered' render={() => unansweredPollIds.length !== 0 ? <Unanswered data={unansweredPollIds}/> : <p align='center'>0 questions found</p>} />
+                    <Route path='/home/answered' render={() => answeredPollIds.length !== 0 ? <Unanswered data={answeredPollIds} /> : <p align='center'>You have not answered any questions yet.</p>} />
                 </Switch>
-            </div>
+            </Fragment>
         )
     }
 }

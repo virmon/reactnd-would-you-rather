@@ -11,7 +11,7 @@ class Leaderboard extends Component {
             return <Redirect to='/' />
         }
         return (
-            <div className=''>
+            <div className='leaderboard'>
                {
                    userIds.map((id) => (
                         <User 

@@ -44,7 +44,7 @@ class NewPoll extends Component {
                     <h3>Would You Rather ...</h3>
                     <form onSubmit={this.handleSubmit}>
                         <input type='text' name='optionOne' value={this.state.optionOne} onChange={this.handleChange} placeholder='Enter option one text here' />
-                            <p>OR</p>
+                            <p align='center'>OR</p>
                         <input type='text' name='optionTwo' value={this.state.optionTwo} onChange={this.handleChange} placeholder='Enter option two text here' />
                         <button className='btn'>Submit</button>
                     </form>

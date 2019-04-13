@@ -60,13 +60,13 @@ class PollItem extends Component {
                             <b>Results:</b>
                             <div className={'option-result ' + (vote === 'optionOne' ? 'vote' : '')}>
                                 <p>Would you rather {optionOne}</p>
-                                <p>{voteOne/(voteOne+voteTwo)*100}%</p>
-                                <b>{voteOne} out of {voteOne + voteTwo} votes</b>
+                                <p>{(voteOne/(voteOne+voteTwo)*100).toFixed(2)}%</p>
+                                <b><p align='center'>{voteOne} out of {voteOne + voteTwo} votes</p></b>
                             </div>
                             <div className={'option-result ' + (vote === 'optionTwo' ? 'vote' : '')}>
                                 <p>Would you rather {optionTwo}</p>
-                                <p>{voteTwo/(voteOne+voteTwo)*100}%</p>
-                                <b>{voteTwo} out of {voteOne + voteTwo} votes</b>
+                                <p>{(voteTwo/(voteOne+voteTwo)*100).toFixed(2)}%</p>
+                                <b><p align='center'>{voteTwo} out of {voteOne + voteTwo} votes</p></b>
                             </div>
                         </div>
             default :
