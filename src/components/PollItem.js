@@ -60,11 +60,13 @@ class PollItem extends Component {
                 return  <div className='poll-text'>
                             <b>Results:</b>
                             <div className={'option-result ' + (vote === 'optionOne' ? 'vote' : '')}>
+                                <div className='your-vote' style={vote === 'optionOne' ? {display:'block'} : {display:'none'}}><p>Your<br/>Vote</p></div>
                                 <p>Would you rather {optionOne}</p>
                                 <ProgressBar score={(voteOne/(voteOne+voteTwo)*100).toFixed(2)} />
                                 <b><p align='center'>{voteOne} out of {voteOne + voteTwo} votes</p></b>
                             </div>
                             <div className={'option-result ' + (vote === 'optionTwo' ? 'vote' : '')}>
+                                <div className='your-vote' style={vote === 'optionTwo' ? {display:'block'} : {display:'none'}}><p>Your<br/>Vote</p></div>
                                 <p>Would you rather {optionTwo}</p>
                                 <ProgressBar score={(voteTwo/(voteOne+voteTwo)*100).toFixed(2)} />
                                 <b><p align='center'>{voteTwo} out of {voteOne + voteTwo} votes</p></b>

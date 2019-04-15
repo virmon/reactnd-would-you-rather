@@ -4,7 +4,6 @@ class ProgressBar extends Component {
     render () {
         const { score }  = this.props
         const percent = score
-        console.log(percent)
         return (
             <div className='progress-bar'>
                 <div 
