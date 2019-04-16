@@ -10,6 +10,7 @@ import Poll from './Poll'
 import PollResult from './PollResult'
 import NewPoll from './NewPoll'
 import Leaderboard from './Leaderboard'
+import NoMatch from './NoMatch'
 
 class App extends Component {
   componentDidMount () {
@@ -30,6 +31,7 @@ class App extends Component {
           <Route path='/result/:id' component={PollResult}/>
           <Route path='/create' component={NewPoll}/>
           <Route path='/leaderboard' component={Leaderboard}/>
+          <Route component={NoMatch} />
         </Switch>
       </Router>
     );
