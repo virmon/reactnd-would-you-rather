@@ -1,11 +1,11 @@
 import React from 'react'
 import PollItem from './PollItem'
 
-const Unanswered = (props) => {
+const Unanswered = ({ data }) => {
     return (
         <div>
             {
-                props.data && props.data.map((id) => (
+                data && data.map((id) => (
                     <PollItem key={id} id={id} />
                 ))
             }

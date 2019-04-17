@@ -13,7 +13,7 @@ class SignIn extends Component {
         const authedId = this.refs.user.value;
 
         if (authedId) {
-            this.props.dispatch(setAuthedUser(authedId));
+            this.props.setAuthedUser(authedId);
             this.setState({
                 toHome: true
             })
@@ -48,4 +48,10 @@ function mapStateToProps ({ users }) {
     }
 }
 
-export default connect(mapStateToProps)(SignIn)
+function mapDispatchToProps (dispatch) {
+    return {
+        setAuthedUser: (user) => dispatch(setAuthedUser(user))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(SignIn)

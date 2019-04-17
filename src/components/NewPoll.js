@@ -19,9 +19,8 @@ class NewPoll extends Component {
         e.preventDefault()
         
         const { optionOne, optionTwo } = this.state
-        const { dispatch } = this.props
 
-        dispatch(handleAddPoll({ optionOne, optionTwo }))
+        this.props.handleAddPoll(optionOne, optionTwo)
 
         this.setState({
             optionOne: '',
@@ -62,4 +61,10 @@ function mapStateToProps ({ authedUser }) {
     }
 }
 
-export default connect(mapStateToProps)(NewPoll)
+function mapDispatchToProps (dispatch) {
+    return {
+        handleAddPoll: (optionOne, optionTwo) => dispatch(handleAddPoll({ optionOne, optionTwo }))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(NewPoll)

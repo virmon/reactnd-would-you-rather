@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { handleInitialData } from '../actions/shared'
-import { setAuthedUser } from '../actions/authedUser';
+import { setAuthedUser } from '../actions/authedUser'
 import { connect } from 'react-redux'
 import Nav from './Nav'
 import SignIn from './SignIn'
@@ -13,10 +13,10 @@ import NoMatch from './NoMatch'
 
 class App extends Component {
   componentDidMount () {
-    this.props.dispatch(handleInitialData())
+    this.props.handleInitialData()
   }
   handleLogout = () => {
-    this.props.dispatch(setAuthedUser(null));
+    this.props.setAuthedUser(null)
   }
   render() {
     const { authedUser, user } = this.props
@@ -43,4 +43,11 @@ function mapStateToProps ({ authedUser, users }) {
   }
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps (dispatch) {
+  return {
+    handleInitialData: () => dispatch(handleInitialData()),
+    setAuthedUser: (user) => dispatch(setAuthedUser(user))
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

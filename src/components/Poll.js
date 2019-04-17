@@ -23,7 +23,7 @@ class Poll extends Component {
         const answer = this.state.selectedOption
 
         // console.log('You have selected:', qid, answer);
-        this.props.dispatch(handleAnswerPoll(qid, answer))
+        this.props.handleAnswerPoll(qid, answer)
         
 
         this.setState({
@@ -118,4 +118,10 @@ function mapStateToProps ({ authedUser, polls, users }, ownProps) {
     }
 }
 
-export default connect(mapStateToProps)(Poll)
+function mapDispatchToProps (dispatch) {
+    return {
+        handleAnswerPoll: (qid, answer) => dispatch(handleAnswerPoll(qid, answer))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Poll)
