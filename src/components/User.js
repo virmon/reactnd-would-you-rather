@@ -1,7 +1,6 @@
 import React from 'react'
 
-const User = (props) => {
-    const { name, avatarURL, answerCount, questionCount } = props
+const User = ({ name, avatarURL, answerCount, questionCount }) => {
     return (
         <div className='poll'>
             {/* <div className='leaderboard-medal' style={{backgroundColor: medal}}></div> */}
