@@ -7,7 +7,6 @@ import Nav from './Nav'
 import SignIn from './SignIn'
 import Dashboard from './Dashboard'
 import Poll from './Poll'
-import PollResult from './PollResult'
 import NewPoll from './NewPoll'
 import Leaderboard from './Leaderboard'
 import NoMatch from './NoMatch'
@@ -27,8 +26,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={SignIn}/>
           <Route path='/home' component={Dashboard}/>
-          <Route path='/poll/:id' component={Poll}/>
-          <Route path='/result/:id' component={PollResult}/>
+          <Route path='/questions/:id' component={Poll}/>
           <Route path='/create' component={NewPoll}/>
           <Route path='/leaderboard' component={Leaderboard}/>
           <Route component={NoMatch} />

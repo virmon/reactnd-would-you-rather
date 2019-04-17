@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import User from './User'
 import { connect } from 'react-redux'
+import NoMatch from './NoMatch';
 
 class Leaderboard extends Component {
     render () {
         const { authedUser, users, userIds } = this.props
         // console.log(this.props)
         if (authedUser === null) {
-            return <Redirect to='/' />
+            return <NoMatch authedUser={authedUser} />
         }
         return (
             <div className='leaderboard'>

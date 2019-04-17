@@ -6,7 +6,7 @@ const Unanswered = (props) => {
         <div>
             {
                 props.data && props.data.map((id) => (
-                    <PollItem key={id} id={id} view='open' />
+                    <PollItem key={id} id={id} />
                 ))
             }
         </div>
