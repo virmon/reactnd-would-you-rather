@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-const ProgressBar = () => {
-    const { score }  = this.props
+const ProgressBar = ({score}) => {
     const percent = score
     return (
         <div className='progress-bar'>
