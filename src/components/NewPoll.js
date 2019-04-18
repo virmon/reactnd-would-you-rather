@@ -7,7 +7,9 @@ class NewPoll extends Component {
     state = {
         optionOne: '',
         optionTwo: '',
-        toHome: false
+        toHome: false,
+        isDisabled: true,
+        borderColor: ''
     }
     handleChange = (e) => {
         this.setState({
@@ -19,17 +21,25 @@ class NewPoll extends Component {
         
         const { optionOne, optionTwo } = this.state
 
-        this.props.handleAddPoll(optionOne, optionTwo)
+        if (optionOne !== '' && optionTwo !== '') {
+            this.props.handleAddPoll(optionOne, optionTwo)
 
-        this.setState({
-            optionOne: '',
-            optionTwo: '',
-            toHome: true
-        })
+            this.setState({
+                optionOne: '',
+                optionTwo: '',
+                toHome: true
+            })
+        } else {
+            alert('Complete the question.');
+            this.setState({
+                borderColor: 'red'
+            })
+        }
 
     }
     render () {
         const { authedUser } = this.props
+        const { borderColor } = this.state
         if (authedUser === null) {
             return <Redirect to={{pathname:'/', state:{redirectUrl: this.props.location}}} />
         } 
@@ -43,9 +53,23 @@ class NewPoll extends Component {
                     <i>Complete the question:</i>
                     <h3>Would You Rather ...</h3>
                     <form onSubmit={this.handleSubmit}>
-                        <input type='text' name='optionOne' value={this.state.optionOne} onChange={this.handleChange} placeholder='Enter option one text here' />
-                            <p align='center'>OR</p>
-                        <input type='text' name='optionTwo' value={this.state.optionTwo} onChange={this.handleChange} placeholder='Enter option two text here' />
+                        <input 
+                            type='text' 
+                            name='optionOne' 
+                            value={this.state.optionOne} 
+                            onChange={this.handleChange} 
+                            placeholder='Enter option one text here'
+                            style={{borderColor}}
+                        />
+                        <p align='center'>OR</p>
+                        <input 
+                            type='text' 
+                            name='optionTwo' 
+                            value={this.state.optionTwo} 
+                            onChange={this.handleChange} 
+                            placeholder='Enter option two text here'
+                            style={{borderColor}} 
+                        />
                         <button className='btn'>Submit</button>
                     </form>
                 </div>
