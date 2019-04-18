@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import { Link, Switch, Route } from 'react-router-dom'
+import { Link, Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Unanswered from './Unanswered'
-import NoMatch from './NoMatch'
 
 class Dashboard extends Component {
     state = {
@@ -24,7 +23,7 @@ class Dashboard extends Component {
         const { authedUser, answeredPollIds, unansweredPollIds } = this.props
         // console.log(this.props)
         if (authedUser === null) {
-            return <NoMatch authedUser={authedUser} />
+            return <Redirect to={{pathname:'/', state:{redirectUrl: this.props.location.pathname}}} />
         }
         return (
             <Fragment>

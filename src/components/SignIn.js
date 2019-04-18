@@ -21,7 +21,8 @@ class SignIn extends Component {
     }
     render () {
         if (this.state.toHome === true) {
-            return <Redirect to='/home/unanswered' />
+            let redirectUrl = (!this.props.location.state) ? '/home/unanswered': this.props.location.state.redirectUrl;
+            return <Redirect to={redirectUrl} />
         }
         return (
             <div className='sign-in'>

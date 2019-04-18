@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import NoMatch from './NoMatch'
 import ProgressBar from './ProgressBar'
 import { handleAnswerPoll } from '../actions/shared' 
@@ -81,7 +81,10 @@ class Poll extends Component {
     render () {
         // console.log('props', this.props)
         const { authedUser, name, avatarURL, optionOne, optionTwo, voteOne, voteTwo, vote, allIds } = this.props
-        if (allIds.includes(this.props.match.params.id) && authedUser !== null) {
+        if (authedUser !== null) {
+            if (!allIds.includes(this.props.match.params.id)) {
+                return <NoMatch authedUser={authedUser} />
+            }
             return (
                 <div className='poll'>
                     <h5 style={{margin:'10px', padding:'10px'}}>{name} asks:</h5>
@@ -94,7 +97,7 @@ class Poll extends Component {
                 </div>
             )
         } else {
-            return <NoMatch authedUser={authedUser} />
+            return <Redirect to={{pathname:'/',state:{redirectUrl: this.props.location}}} />
         }
     }
 }

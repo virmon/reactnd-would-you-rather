@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import NoMatch from './NoMatch'
 import { handleAddPoll } from '../actions/polls'
 import { connect } from 'react-redux'
 
@@ -32,7 +31,7 @@ class NewPoll extends Component {
     render () {
         const { authedUser } = this.props
         if (authedUser === null) {
-            return <NoMatch authedUser={authedUser} />
+            return <Redirect to={{pathname:'/', state:{redirectUrl: this.props.location}}} />
         } 
         if (this.state.toHome) {
             return <Redirect to='/home/unanswered' />
